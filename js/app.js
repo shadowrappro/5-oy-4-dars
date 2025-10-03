@@ -5,7 +5,9 @@ const elErrorDiv = document.getElementById("errorDiv")
 
 function init() {
     elLoader.classList.remove("hidden")
-    fetch("https://json-api.uz/api/project/fn43/cars").then((res)=> res.json()).then((res)=> {
+    fetch("https://json-api.uz/api/project/fn43/cars")
+    .then((res)=> res.json())
+    .then((res)=> {
         getUI(res.data)
     })
     .catch((error) => {
@@ -61,10 +63,13 @@ function getUI(obj) {
         elEngine.innerText = element.engine;
         elHorsepower.innerText = element.horsepower;
         elFuelType.innerText = element.fuelType;
-        const {fuelConsumption: {city, highway, combined} } = element;
-        elCity.innerText = city;
-        elHighway.innerText = highway;
-        elCombined.innerText = combined
+        if (element.fuelConsumption) {
+           const { city, highway, combined } = element.fuelConsumption;
+           elCity.innerText = city;
+           elHighway.innerText = highway;
+           elCombined.innerText = combined;
+        }
+
         elCountry.innerText = element.country;
         elCarDescription.innerText = element.description;
         elID.innerText = element.id;
