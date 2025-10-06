@@ -17,6 +17,8 @@
         <ul class="carssContainer" id="carsContainer"></ul>
     </div>
 
+    <ul id="toastContainer"></ul>
+
     <div id="skeletonContainer" class="hidden">
         <div class="carsLi" id="skeleton-div">
             <div class="skeleton h-17 w-66"></div>
@@ -500,6 +502,7 @@
         </div>
         
     </div>
+    
 
     <template id="carsTemplate">
         <li class="carsLi">
@@ -527,10 +530,15 @@
             </p>
             <p>country: <span class="country"></span></p>
             <p>id: <span class="id"></span></p>
+
+            <span class="buttons">
+                <button class="js-delete">Delete</button>
+                <button class="js-edit">Edit</button>
+            </span>
         </li>
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="./js/app.js"></script>
+    <script src="./js/app.js" type="module"></script>
 </body>
 </html>

@@ -1,11 +1,14 @@
+import { toast } from "./toast.js";
+
 const elCarContainer = document.getElementById("carsContainer")
 const elCarsTemplate = document.getElementById("carsTemplate")
 const elLoader = document.getElementById("skeletonContainer")
 const elErrorDiv = document.getElementById("errorDiv")
+let token;
 
 function init() {
     elLoader.classList.remove("hidden")
-    fetch("https://json-api.uz/api/project/fn43/cars")
+    fetch("https://json-api.uz/api/project/fn44/cars")
     .then((res)=> res.json())
     .then((res)=> {
         getUI(res.data)
@@ -46,6 +49,8 @@ function getUI(obj) {
         const elCountry = clone.querySelector(".country")
         const elID = clone.querySelector(".id")
         const elCarDescription = clone.querySelector(".carDescription")
+        const elDeleteButton = clone.querySelector(".js-delete")
+        const elEditButton = clone.querySelector(".js-edit")
 
 
         elTitle.innerText = element.name;
@@ -72,8 +77,35 @@ function getUI(obj) {
 
         elCountry.innerText = element.country;
         elCarDescription.innerText = element.description;
+        
         elID.innerText = element.id;
+        elDeleteButton.id = element.id
+        elEditButton.id = element.id;
 
         elCarContainer.append(clone)
     });
 }
+
+function deleteCar(id) {
+    fetch(`https://json-api.uz/api/project/fn44/cars/${id}`, {
+        method: "DELETE",
+    })
+    .then((res)=> {
+        return res.text()
+    })
+    .then((res)=> {
+        toast(res)
+        init()
+    })
+}
+
+
+// CRUD
+elCarContainer.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("js-delete")) {
+        if (confirm("Rostdan ham ushbu modelni o'chirmoqchimisiz?")) {
+            evt.target.innerText = "O'chirilmoqda..."
+            deleteCar(evt.target.id);
+        }
+    }
+})

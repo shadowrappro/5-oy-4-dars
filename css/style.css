@@ -119,3 +119,61 @@
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.js-delete {
+    padding: 10px;
+    background-color:aqua;
+    border: 1px black solid;
+    border-radius: 16px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.js-delete:hover {
+    color: blue;
+    transition: 0.7s ease;
+    background-color: white;
+}
+
+.js-edit {
+    padding: 10px;
+    background-color:aqua;
+    border: 1px black solid;
+    border-radius: 16px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.toast-li {
+  position: relative;
+  list-style: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background: wheat;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.js-edit:hover {
+    color: blue;
+    transition: 0.7s ease;
+    background-color: white;
+}
+
+#toastContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    top: 30px;
+    right: 50px;
+}
